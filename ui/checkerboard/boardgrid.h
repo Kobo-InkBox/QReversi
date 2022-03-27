@@ -5,6 +5,7 @@
 
 #include <QPushButton>
 #include <QTimer>
+#include <iostream>
 
 /// \brief 棋盘格子。
 ///
@@ -15,8 +16,8 @@ class BoardGrid : public QPushButton
   Q_OBJECT
 
 public:
-  static const size_t kGridSize = 128;
-  static const size_t kStoneRadius = 55;
+  int kGridSize = std::atoi(std::getenv("GRIDSIZE"));
+  int kStoneRadius = std::atoi(std::getenv("STONERADIUS"));
 
   /// \brief 构造函数。
   /// \param position 该格子的位置。
