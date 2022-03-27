@@ -15,8 +15,8 @@ class BoardGrid : public QPushButton
   Q_OBJECT
 
 public:
-  static const size_t kGridSize = 64;
-  static const size_t kStoneRadius = 24;
+  static const size_t kGridSize = 128;
+  static const size_t kStoneRadius = 55;
 
   /// \brief 构造函数。
   /// \param position 该格子的位置。

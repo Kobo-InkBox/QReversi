@@ -19,13 +19,13 @@
      <item>
       <widget class="QGroupBox" name="groupBox">
        <property name="title">
-        <string>黑方</string>
+        <string>Black</string>
        </property>
        <layout class="QFormLayout" name="formLayout">
         <item row="0" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>类型</string>
+           <string>Player type</string>
           </property>
          </widget>
         </item>
@@ -33,12 +33,12 @@
          <widget class="QComboBox" name="comboBox_playerType_1">
           <item>
            <property name="text">
-            <string>电脑</string>
+            <string>Computer</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>玩家</string>
+            <string>Player</string>
            </property>
           </item>
          </widget>
@@ -46,7 +46,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>昵称</string>
+           <string>Nick name</string>
           </property>
          </widget>
         </item>
@@ -66,13 +66,13 @@
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
-        <string>白方</string>
+        <string>White</string>
        </property>
        <layout class="QFormLayout" name="formLayout_2">
         <item row="0" column="0">
          <widget class="QLabel" name="label_5">
           <property name="text">
-           <string>类型</string>
+           <string>Player type</string>
           </property>
          </widget>
         </item>
@@ -80,12 +80,12 @@
          <widget class="QComboBox" name="comboBox_playerType_2">
           <item>
            <property name="text">
-            <string>电脑</string>
+            <string>Computer</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>玩家</string>
+            <string>Player</string>
            </property>
           </item>
          </widget>
@@ -93,7 +93,7 @@
         <item row="1" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
-           <string>昵称</string>
+           <string>Nick name</string>
           </property>
          </widget>
         </item>

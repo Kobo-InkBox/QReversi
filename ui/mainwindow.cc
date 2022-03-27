@@ -8,17 +8,25 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QStatusBar>
+#include <QProcess>
+#include <QFile>
 
 MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent),
     m_battle(new Battle(this)),
     m_checkerBoardWidget(new CheckerBoardWidget(this)),
-    m_gameMenu(menuBar()->addMenu("游戏")),
-    m_startGame(new QAction("开始新游戏", this)),
-    m_stopGame(new QAction("结束游戏", this)),
-    m_exitGame(new QAction("退出", this)),
+    m_gameMenu(menuBar()->addMenu("Game")),
+    m_startGame(new QAction("Start new game", this)),
+    m_stopGame(new QAction("End game", this)),
+    m_exitGame(new QAction("Quit", this)),
     m_newGameDialog(new NewGameDialog(this))
 {
+    QApplication::setFont(QFont("u001"));
+    // Stylesheet
+    QFile stylesheetFile(":/eink.qss");
+    stylesheetFile.open(QFile::ReadOnly);
+    this->setStyleSheet(stylesheetFile.readAll());
+    stylesheetFile.close();
   // 中心控件
   setCentralWidget(m_checkerBoardWidget);
 
@@ -46,7 +54,7 @@ void MainWindow::initMenuBar()
 void MainWindow::initSignalsAndSlots()
 {
   // menu actions
-  connect(m_exitGame, &QAction::triggered, this, []() { QApplication::quit(); });
+  connect(m_exitGame, &QAction::triggered, this, []() { QProcess process; process.startDetached("/mnt/onboard/.adds/inkbox/inkbox", QStringList()); qApp->quit(); });
   connect(m_startGame, &QAction::triggered, this, &MainWindow::startNewGame);
   connect(m_stopGame, &QAction::triggered, this, &MainWindow::stopGame);
 
@@ -76,9 +84,9 @@ void MainWindow::showWinnerInfo(GamePlay::PlayerColor winner)
   mb->setAttribute(Qt::WA_DeleteOnClose, true);
   mb->setWindowTitle(" ");
   if (winner == GamePlay::Unknown)
-    mb->setText("平局！");
+    mb->setText("Tie!");
   else
-    mb->setText(m_battle->getPlayer(winner)->getName() + " 胜利！");
+    mb->setText(m_battle->getPlayer(winner)->getName() + " wins!");
   mb->show();
 }
 
@@ -89,12 +97,12 @@ void MainWindow::battleChangedHandler()
     m_startGame->setEnabled(false);
     m_stopGame->setEnabled(true);
     QString currentPlayerName = m_battle->getPlayer(m_battle->currentPlayerColor())->getName();
-    statusBar()->showMessage("请 " + currentPlayerName + " 下子", 0);
+    statusBar()->showMessage(currentPlayerName + "'s turn", 0);
   }
   else
   {
     m_startGame->setEnabled(true);
     m_stopGame->setEnabled(false);
-    statusBar()->showMessage("开始一场新游戏", 0);
+    statusBar()->showMessage("Start a new game", 0);
   }
 }
